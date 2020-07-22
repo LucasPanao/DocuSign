@@ -3,7 +3,7 @@ import yaml
 import pyodbc
 
 with open('config.yml') as f:
-    db_config = yaml.load(f)
+    db_config = yaml.safe_load(f)
 server = db_config['db-config']['server']
 database = db_config['db-config']['database']
 username = db_config['db-config']['username']

@@ -4,7 +4,7 @@ import yaml
 import json
 
 with open('config.yml') as c:
-    config = yaml.load(c)
+    config = yaml.safe_load(c)
 url = config['my-config']['url']
 hdr = config['my-config']['token']
 
