@@ -10,4 +10,11 @@ hdr = config['my-config']['token']
 
 response = requests.get(url, headers = hdr)
 data = response.json()
-print (data)
+
+for envlp in data['envelopes']:
+    envlpId = (envlp['envelopeId'])
+    envlpSts = (envlp['status']) 
+    envlpCompl = (envlp['completedDateTime'])
+print(envlpId,envlpSts,envlpCompl)
+
+with open('info_contrato.json', 'w') as f:json.dump(data, f)
