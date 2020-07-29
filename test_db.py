@@ -8,8 +8,10 @@ server = db_config['db-config']['server']
 database = db_config['db-config']['database']
 username = db_config['db-config']['username']
 password = db_config['db-config']['password']
+valor_id = '12345'
 
 def retornar_conexao_sql():
+    global conexao
     #username = ""
     #password = ""
     #string_conexao = 'Driver={ODBC DRIVER 17 for SQL Server};Server='+server+';Database='+database+';UID='+username+';PWD='+ password
@@ -18,7 +20,10 @@ def retornar_conexao_sql():
     return conexao.cursor()
 
 cursor = retornar_conexao_sql()
-cursor.execute("SELECT * FROM tb_alunos")
-row = cursor.fetchone()
-if row:
-    print(row)
+cursor.execute("SELECT * FROM Integra_DocuSign")
+cursor.execute('''
+                INSERT INTO Integra_DocuSign (id_envelope)
+                VALUES
+                (?)
+                ''', valor_id)
+conexao.commit()
