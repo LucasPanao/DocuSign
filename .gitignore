@@ -1,8 +1,10 @@
-APP_KEYS.txt
+*.txt
+*.xlsx
+*.pdf
+*.json
 config.yml
-ler1.txt
-contrato.pdf
 contrato.py
 app 
 docs
-*.json 
+refrest_token.py
+index.html

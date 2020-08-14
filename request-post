@@ -1,0 +1,32 @@
+POST https://demo.docusign.net/restapi/v2/accounts/e2113930-a0d1-47c4-83ef-84c082cd06c9/envelopes HTTP/1.1
+Accept: application/json
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,fa;q=0.6,sv;q=0.4
+Cache-Control: no-cache
+Origin: https://apiexplorer.docusign.com
+Referer: https://apiexplorer.docusign.com/
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36
+Authorization: Bearer eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1MS00Y2U5LWFmMWMtNjg5ODEyMjAzMzE3In0.AQoAAAABAAUABwAAY-TLV0DYSAgAAKMH2ppA2EgCAP1ns3eVXkdPqX6HF85i4EQVAAEAAAAYAAIAAAAFAAAACgAAAA0AJAAAADQxMDJlNzcwLTZhN2MtNDk5YS05NDAzLTI5OTYyNjdmOTQ2MyIAJAAAADQxMDJlNzcwLTZhN2MtNDk5YS05NDAzLTI5OTYyNjdmOTQ2MzAAgIjxYbE02Eg3AFpTWfbXSbJPg2dfKit3TQg.CH1cT9VlvLYtTUxK9AdAJ_qTHwv9CvJQBdHn_pNM1RLxEYQ7J_WP1k4okwwv37TlKyRIswlCQBmmkW9CtgMRxSf0dddElzF5q2GfU0wulLpuZPnQ7SC8NAxH069UnDwGblLxtWmawDeJVXPrS0zkcd5UDIq_yJn9Jis9xJBlLnYh6ZC__hlUG08itI-L6ZVAzsbDi3MnS6gEy53Zy6i5tUwkkggYwnz6CgebQSa0Azda7I2c8wHd8HzxTvGzEFurUo5-gEb_3ZyK0OYJigLW2lrugcnZImTBEaD7pUMBFrVywxxmqxjbC3lGjKgQq-RBWrxYwE43uUMbHumgmCE-Nw
+Content-Length: 126642
+Content-Type: application/json
+
+Show Base64 Bytes in Request
+{
+  "documents": [
+    {
+      "documentBase64": "<Base64BytesHere>",
+      "documentId": "99428916",
+      "name": "CONTRATO OBJ API"
+    }
+  ],
+  "emailSubject": "lucas.ribeiro@objetivobaixada.com.br",
+  "status": "sent",
+  "templateId": "50d99261-d9c9-4359-ba64-d56abe113832",
+  "templateRoles": [
+    {
+      "email": "lucas.ribeiro@objetivobaixada.com.br",
+      "name": "Lucas Panao",
+      "roleName": "Objetivo"
+    }
+  ]
+}
