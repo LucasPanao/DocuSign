@@ -111,3 +111,17 @@ get_args(kwargs)
 
 r = requests.post(url,json= dataEnv, headers = hdr)
 print(r.json())
+data = r.json()
+envelopeId = data['envelopeId']
+print(envelopeId)
+
+dataView = {
+  "envelopeId" : ""+envelopeId+"",
+  "returnUrl" : "https://google.com"
+}
+
+url_view = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/views/console'.format(signer_client_id) 
+r = requests.post(url_view,json = dataView, headers = hdr)
+data = r.json()
+envelopeId = data['url']
+print(envelopeId)
