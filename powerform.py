@@ -86,3 +86,7 @@ print(envelopeUrl)
 ### COLLETING TABS FROM ACC 
 url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/tab_definitions'.format(signer_client_id)
 requested(url,hdr)
+for tabs in data['tabs']:
+  tabLabel = (tabs['tabLabel'])
+  if tabLabel != '':
+    print(tabLabel)
