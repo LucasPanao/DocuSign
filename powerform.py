@@ -55,11 +55,15 @@ cc_email = config['cc']['email']
 cc_name = config['cc']['name']
 #### END CONFIG
 
-
 ### CONVERTING PDF INTO BASE64 FILE
 with open("contrato-objetivo-2.pdf", "rb") as pdf_file:
     pdf_64 = base64.b64encode(pdf_file.read())
 pdf_64 = pdf_64.decode("UTF-8")
+
+### GET ENVELOPE STATUS
+requested(url,hdr)
+if data['status'] == 'completed':
+  print('O envelope foi assinado')
 
 ### CREATING ENVELOPE
 kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
