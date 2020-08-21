@@ -25,7 +25,7 @@ def post(url,dataEnv,hdr):
   envelopeId = data['envelopeId']
   print(envelopeId)
   return envelopeId
-'''
+
 def create_envelope(customKwargs,*kwargs):
   global dataEnv
   dataEnv = {
@@ -73,7 +73,7 @@ def create_envelope(customKwargs,*kwargs):
     ]
   }
   return dataEnv
-'''
+
 def update_template():
   global dataTemplate
   dataTemplate = {
@@ -154,6 +154,11 @@ def update_template():
           "value": "33015063"
         },
         {
+          "tabId": "a9ee6d8d-bf22-4d89-a590-2b71f08fab17",
+          "tabLabel": "Tel R.",
+          "value": "33015063"
+        },
+        {
           "tabId": "1d898afc-e53d-49d8-b281-56082233a79f",
           "tabLabel": "Telefone C.",
           "value": "33015063"
@@ -181,7 +186,7 @@ signer_name = config['signer']['name']
 cc_email = config['cc']['email']
 cc_name = config['cc']['name']
 #### END CONFIG
-
+'''
 ### UPDATE TEMPLATE TABS
 update_template()
 recipientId = "34859996"
@@ -195,7 +200,7 @@ with open('custom_tabs.json', 'w') as f:json.dump(data, f)
 with open("contrato-objetivo-2.pdf", "rb") as pdf_file:
     pdf_64 = base64.b64encode(pdf_file.read())
 pdf_64 = pdf_64.decode("UTF-8")
-
+'''
 ### LIST ENVELOPE STATUS
 status_env = {"envelopeIds": [""]}
  
@@ -210,14 +215,14 @@ while i >= 1:
       print('O envelope ' +envelopes['envelopeId']+ ' foi assinado')  
       i-=1
   print(i)
-
+'''
 ### CREATING ENVELOPE
 CODCOLIGADA = "1";RA = "2";IDPERLET = "3";IDHABILITACAOFILIAL = "4";CODCONTRATO="5"
 kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
 customKwargs = (CODCOLIGADA,RA,IDPERLET,IDHABILITACAOFILIAL,CODCONTRATO)
 create_envelope(customKwargs,kwargs)
 post(url,dataEnv,hdr)
-
+'''
 ### CREATING ENVELOPE_VIEW 
 dataView = {
   "envelopeId" : ""+envelopeId+"",
