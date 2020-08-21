@@ -11,11 +11,20 @@ from docusign_esign.client.api_client import ApiClient
 
 
 #### START FUNCTIONS
-def requested(url,hdr):
+def get(url,hdr):
     global data
     response = requests.get(url, headers = hdr)
     data = response.json()
     with open('envelope.json', 'w') as f:json.dump(data, f)
+
+def post(url,dataEnv,hdr):
+  global envelopeId
+  r = requests.post(url,json= dataEnv, headers = hdr)
+  print(r.json())
+  data = r.json()
+  envelopeId = data['envelopeId']
+  print(envelopeId)
+  return envelopeId
 
 def create_envelope(customKwargs,*kwargs):
   global dataEnv
@@ -91,7 +100,6 @@ with open("contrato-objetivo-2.pdf", "rb") as pdf_file:
 pdf_64 = pdf_64.decode("UTF-8")
 
 ### LIST ENVELOPE STATUS
- 
 status_env = {"envelopeIds": [""]}
  
 url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/envelopes?from_date=08/01/2020'.format(signer_client_id)
@@ -106,20 +114,12 @@ while i >= 1:
       i-=1
   print(i)
 
-
 ### CREATING ENVELOPE
 CODCOLIGADA = "1";RA = "2";IDPERLET = "3";IDHABILITACAOFILIAL = "4";CODCONTRATO="5"
 kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
 customKwargs = (CODCOLIGADA,RA,IDPERLET,IDHABILITACAOFILIAL,CODCONTRATO)
 create_envelope(customKwargs,kwargs)
-
-r = requests.post(url,json= dataEnv, headers = hdr)
-print(r.json())
-data = r.json()
-envelopeId = data['envelopeId']
-print(envelopeId)
-
-
+post(url,dataEnv,hdr)
 
 ### CREATING ENVELOPE_VIEW 
 dataView = {
@@ -135,7 +135,7 @@ print(envelopeUrl)
 
 ### COLLETING TABS FROM ACC 
 url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/tab_definitions'.format(signer_client_id)
-requested(url,hdr)
+get(url,hdr)
 for tabs in data['tabs']:
   tabLabel = (tabs['tabLabel'])
   if tabLabel != '':
