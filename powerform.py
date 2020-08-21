@@ -5,6 +5,9 @@ import json
 import pyodbc
 from docusign_esign import EnvelopesApi, EnvelopeDefinition, TemplateRole
 import base64
+import time
+from datetime import datetime, timedelta
+from docusign_esign.client.api_client import ApiClient
 
 
 #### START FUNCTIONS
@@ -36,6 +39,7 @@ def create_envelope(*kwargs):
     ]
   }
   return dataEnv
+
 #### END FUCTIONS   
 
 
@@ -55,15 +59,28 @@ cc_email = config['cc']['email']
 cc_name = config['cc']['name']
 #### END CONFIG
 
+
 ### CONVERTING PDF INTO BASE64 FILE
 with open("contrato-objetivo-2.pdf", "rb") as pdf_file:
     pdf_64 = base64.b64encode(pdf_file.read())
 pdf_64 = pdf_64.decode("UTF-8")
 
-### GET ENVELOPE STATUS
-requested(url,hdr)
-if data['status'] == 'completed':
-  print('O envelope foi assinado')
+### LIST ENVELOPE STATUS
+
+status_env = {"envelopeIds": [""]}
+ 
+url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/envelopes?from_date=08/01/2020'.format(signer_client_id)
+response = requests.put(url,json= status_env,headers = hdr)
+data = response.json()
+i = int(data['resultSetSize'])
+while i >= 1: 
+  print('temos ' + data['resultSetSize'] + ' envelopes enviados')
+  for envelopes in data['envelopes']:
+    if envelopes['status'] == 'completed':
+      print('O envelope ' +envelopes['envelopeId']+ ' foi assinado')  
+      i-=1
+  print(i)
+
 
 ### CREATING ENVELOPE
 kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
