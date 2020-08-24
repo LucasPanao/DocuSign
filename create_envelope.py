@@ -94,7 +94,7 @@ cc_name = config['cc']['name']
 #### END CONFIG
 
 ### CONVERTING PDF TO BASE64
-with open("contrato-objetivo-2.pdf", "rb") as pdf_file:
+with open("contrato-final.pdf", "rb") as pdf_file:
     pdf_64 = base64.b64encode(pdf_file.read())
 pdf_64 = pdf_64.decode("UTF-8")
 
