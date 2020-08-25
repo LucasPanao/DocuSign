@@ -18,12 +18,14 @@ def get(url,hdr):
 
 def post(url,dataEnv,hdr):
   global envelopeId
+  global statusContrato
   r = requests.post(url,json= dataEnv, headers = hdr)
   print(r.json())
   data = r.json()
   envelopeId = data['envelopeId']
+  statusContrato = data['status']
   print(envelopeId)
-  return envelopeId
+  return envelopeId, statusContrato
 
 def create_envelope(customKwargs,*kwargs):
   global dataEnv
@@ -97,6 +99,15 @@ db_docu.query = '''
 args = (envelopeId, CODCOLIGADA,RA,IDPERLET,IDHABILITACAOFILIAL,CODCONTRATO)
 db_docu.insert_sql(db_docu.query,args)
 
+
+db_docu.query = '''
+                INSERT INTO dbo.DOCU_ENVELOPE_STATUS (DOCU_IDENVELOPE, DOCU_STATUS)
+                VALUES
+                (?,?)
+                    '''
+args = (envelopeId, statusContrato)
+db_docu.insert_sql(db_docu.query,args)
+
 ### CALLING DB
-db_docu.select = "SELECT * FROM dbo.DOCU_ENVELOPE"
+db_docu.select = "SELECT * FROM VW_DOCU_ENVELOPES_ENVIADOS_LISTA"
 db_docu.select_sql(db_docu.select)

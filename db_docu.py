@@ -8,8 +8,6 @@ server = db_config['db-config']['server']
 database = db_config['db-config']['database']
 username = db_config['db-config']['username']
 password = db_config['db-config']['password']
-valor_id = '123453999'
-valor_id2 = '231365'
 
 def retornar_conexao_sql():
     global conexao
@@ -28,6 +26,6 @@ def insert_sql(query,args):
     cursor = retornar_conexao_sql()
     cursor.execute(query,args)
     conexao.commit()
-    print("gravado no banco")
+    print('gravado no banco')
 
                   
