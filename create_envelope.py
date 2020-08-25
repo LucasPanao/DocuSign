@@ -3,11 +3,10 @@ import requests
 import yaml
 import json
 import pyodbc
-from docusign_esign import EnvelopesApi, EnvelopeDefinition, TemplateRole
 import base64
 import time
 from datetime import datetime, timedelta
-from docusign_esign.client.api_client import ApiClient
+import db_docu
 
 
 #### START FUNCTIONS
@@ -26,33 +25,16 @@ def post(url,dataEnv,hdr):
   print(envelopeId)
   return envelopeId
 
-
 def create_envelope(customKwargs,*kwargs):
   global dataEnv
   dataEnv = {
     "customFields": {
     "textCustomFields": [
-      {
-        "name": "CODCOLIGADA",
-        "value": ""+CODCOLIGADA+""
-      },
-      {
-        "name": "RA",
-        "value": ""+RA+""
-      },
-      {
-        "name": "IDPERLET",
-        "value": ""+IDPERLET+""
-      },
-      {
-        "name": "IDHABILITACAOFILIAL",
-        "value": ""+IDHABILITACAOFILIAL+""
-      },
-      {
-        "name": "CODCONTRATO",
-        "value": ""+CODCONTRATO+""
-      },
-      
+      {"name": "CODCOLIGADA","value": ""+CODCOLIGADA+""},
+      {"name": "RA","value": ""+RA+""},
+      {"name": "IDPERLET","value": ""+IDPERLET+""},
+      {"name": "IDHABILITACAOFILIAL","value": ""+IDHABILITACAOFILIAL+""},
+      {"name": "CODCONTRATO","value": ""+CODCONTRATO+""},      
     ]
   },
     "documents": [
@@ -98,10 +80,23 @@ with open("contrato-final.pdf", "rb") as pdf_file:
     pdf_64 = base64.b64encode(pdf_file.read())
 pdf_64 = pdf_64.decode("UTF-8")
 
-
 ### CREATING ENVELOPE
 CODCOLIGADA = "1";RA = "2";IDPERLET = "3";IDHABILITACAOFILIAL = "4";CODCONTRATO="5"
 kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
 customKwargs = (CODCOLIGADA,RA,IDPERLET,IDHABILITACAOFILIAL,CODCONTRATO)
 create_envelope(customKwargs,kwargs)
 post(url,dataEnv,hdr)
+
+### GRAVANDO NO BANCO
+
+db_docu.query = '''
+                INSERT INTO dbo.DOCU_ENVELOPE (DOCU_IDENVELOPE, TOTVS_CODCOLIGADA, TOTVS_IDHABILITACAOFILIAL, TOTVS_IDPERLET, TOTVS_RA, TOTVS_CODCONTRATO)
+                VALUES
+                (?,?,?,?,?,?)
+                    '''
+args = (envelopeId, CODCOLIGADA,RA,IDPERLET,IDHABILITACAOFILIAL,CODCONTRATO)
+db_docu.insert_sql(db_docu.query,args)
+
+### CALLING DB
+db_docu.select = "SELECT * FROM dbo.DOCU_ENVELOPE"
+db_docu.select_sql(db_docu.select)
