@@ -16,10 +16,10 @@ def retornar_conexao_sql():
     return conexao.cursor()
 
 def select_sql(select):
+    global row
     cursor = retornar_conexao_sql()
     cursor.execute(select)
-    row = cursor.fetchone()
-    if row:
+    for row in cursor.fetchall():
         print(row)
 
 def insert_sql(query,args):

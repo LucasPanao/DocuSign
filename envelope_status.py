@@ -8,6 +8,7 @@ import base64
 import time
 from datetime import datetime, timedelta
 from docusign_esign.client.api_client import ApiClient
+import db_docu
 
 #### CONFIG
 with open('config.yml') as c:
@@ -26,11 +27,24 @@ cc_email = config['cc']['email']
 cc_name = config['cc']['name']
 #### END CONFIG
 
-status_env = {"envelopeIds": [""]}
+### CALLING DB
+'''
+db_docu.select = "SELECT * FROM VW_DOCU_ENVELOPES_ENVIADOS_LISTA"
+db_docu.select_sql(db_docu.select)
+
+'''
+request_body = {
+  "envelopeIds": [
+    "",
+    ""
+    ]
+  }
  
-url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/envelopes?from_date=08/01/2020'.format(signer_client_id)
-response = requests.put(url,json= status_env,headers = hdr)
+url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/envelopes/status?envelope_ids=request_body'.format(signer_client_id)
+response = requests.put(url,json=request_body,headers = hdr)
 data = response.json()
+with open('status.json', 'w') as f:json.dump(data, f)
+'''
 i = int(data['resultSetSize'])
 while i >= 1: 
   print('temos ' + data['resultSetSize'] + ' envelopes enviados')
@@ -39,3 +53,4 @@ while i >= 1:
       print('O envelope ' +envelopes['envelopeId']+ ' foi assinado')  
       i-=1
   print(i)
+'''
