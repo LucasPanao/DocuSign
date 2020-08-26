@@ -17,10 +17,12 @@ def retornar_conexao_sql():
 
 def select_sql(select):
     global row
+    abre_arq()
     cursor = retornar_conexao_sql()
     cursor.execute(select)
     for row in cursor.fetchall():
         print(row)
+        salva_arq(ids)
 
 def insert_sql(query,args):
     cursor = retornar_conexao_sql()
@@ -28,4 +30,13 @@ def insert_sql(query,args):
     conexao.commit()
     print('gravado no banco')
 
+def abre_arq():
+    global ids
+    ids = open('ids.txt','w')
+
+def salva_arq(ids):
+    ids.write(str(row) + "\n")
+
+select = "SELECT * FROM VW_DOCU_ENVELOPES_ENVIADOS_LISTA"
+select_sql(select)
                   
