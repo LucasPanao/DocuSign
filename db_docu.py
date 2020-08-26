@@ -1,6 +1,7 @@
 import os
 import yaml
 import pyodbc
+import re
 
 with open('config.yml') as f:
     db_config = yaml.safe_load(f)
@@ -21,8 +22,8 @@ def select_sql(select):
     cursor = retornar_conexao_sql()
     cursor.execute(select)
     for row in cursor.fetchall():
-        print(row)
         salva_arq(ids)
+    ids.close()
 
 def insert_sql(query,args):
     cursor = retornar_conexao_sql()
@@ -35,8 +36,8 @@ def abre_arq():
     ids = open('ids.txt','w')
 
 def salva_arq(ids):
-    ids.write(str(row) + "\n")
+    global row
+    row = str(row)
+    row = re.sub("[()',]","",row)
+    ids.write(row + "\n")
 
-select = "SELECT * FROM VW_DOCU_ENVELOPES_ENVIADOS_LISTA"
-select_sql(select)
-                  

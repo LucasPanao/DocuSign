@@ -107,7 +107,3 @@ db_docu.query = '''
                     '''
 args = (envelopeId, statusContrato)
 db_docu.insert_sql(db_docu.query,args)
-
-### CALLING DB
-db_docu.select = "SELECT * FROM VW_DOCU_ENVELOPES_ENVIADOS_LISTA"
-db_docu.select_sql(db_docu.select)
