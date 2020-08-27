@@ -18,26 +18,18 @@ def retornar_conexao_sql():
 
 def select_sql(select):
     global row
-    abre_arq()
+    global rows
+    rows = []
     cursor = retornar_conexao_sql()
     cursor.execute(select)
     for row in cursor.fetchall():
-        salva_arq(ids)
-    ids.close()
+        row = str(row)
+        row = re.sub("[()',]","",row)
+        rows.append(row)
+    return rows
 
 def insert_sql(query,args):
     cursor = retornar_conexao_sql()
     cursor.execute(query,args)
     conexao.commit()
     print('gravado no banco')
-
-def abre_arq():
-    global ids
-    ids = open('ids.txt','w')
-
-def salva_arq(ids):
-    global row
-    row = str(row)
-    row = re.sub("[()',]","",row)
-    ids.write(row + "\n")
-

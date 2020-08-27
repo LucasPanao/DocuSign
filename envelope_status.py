@@ -22,17 +22,15 @@ hdr = config['my-config']['token']
 db_docu.select = "SELECT * FROM VW_DOCU_ENVELOPES_ENVIADOS_LISTA"
 db_docu.select_sql(db_docu.select)
 
-### loop through the envelopes
-files = open('ids.txt','r')
-for line in files.readlines():
-  envelopeId = line.rstrip()
+for rows in db_docu.rows:
+  envelopeId = rows.rstrip()
   url = "https://demo.docusign.net/restapi/v2.1/accounts/{0}/envelopes/{1}".format(signer_client_id,envelopeId)
   get(url,hdr)
   print(data['status'])
   if data['status'] != 'sent':
     statusContrato = data['status']
     db_docu.query = '''
-                INSERT INTO dbo.DOCU_ENVELOPE_STATUS (DOCU_IDENVELOPE, DOCU_STATUS)
+               INSERT INTO dbo.DOCU_ENVELOPE_STATUS (DOCU_IDENVELOPE, DOCU_STATUS)
                 VALUES
                 (?,?)
                     '''
