@@ -24,7 +24,7 @@ def select_sql(select):
     cursor.execute(select)
     for row in cursor.fetchall():
         row = str(row)
-        row = re.sub("[()',]","",row)
+        row = re.sub("[()']","",row)
         rows.append(row)
     return rows
 

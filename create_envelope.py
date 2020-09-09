@@ -7,6 +7,7 @@ import base64
 import time
 from datetime import datetime, timedelta
 import db_docu
+import start_var
 
 
 #### START FUNCTIONS
@@ -32,11 +33,11 @@ def create_envelope(customKwargs,*kwargs):
   dataEnv = {
     "customFields": {
     "textCustomFields": [
-      {"name": "CODCOLIGADA","value": ""+CODCOLIGADA+""},
-      {"name": "RA","value": ""+RA+""},
-      {"name": "IDPERLET","value": ""+IDPERLET+""},
-      {"name": "IDHABILITACAOFILIAL","value": ""+IDHABILITACAOFILIAL+""},
-      {"name": "CODCONTRATO","value": ""+CODCONTRATO+""},      
+      {"name": "CODCOLIGADA","value": ""+start_var.CODCOLIGADA[0]+""},
+      {"name": "RA","value": ""+start_var.RA[0]+""},
+      {"name": "IDPERLET","value": ""+start_var.IDPERLET[0]+""},
+      {"name": "IDHABILITACAOFILIAL","value": ""+start_var.IDHABILITACAOFILIAL[0]+""},
+      {"name": "CODCONTRATO","value": ""+start_var.CODCONTRATO[0]+""},      
     ]
   },
     "documents": [
@@ -83,9 +84,9 @@ with open("contrato-final.pdf", "rb") as pdf_file:
 pdf_64 = pdf_64.decode("UTF-8")
 
 ### CREATING ENVELOPE
-CODCOLIGADA = "1";RA = "2";IDPERLET = "3";IDHABILITACAOFILIAL = "4";CODCONTRATO="5"
+start_var.start_variables_envelope()
 kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
-customKwargs = (CODCOLIGADA,RA,IDPERLET,IDHABILITACAOFILIAL,CODCONTRATO)
+customKwargs = (start_var.CODCOLIGADA[0],start_var.RA[0],start_var.IDPERLET[0],start_var.IDHABILITACAOFILIAL[0],start_var.CODCONTRATO[0])
 create_envelope(customKwargs,kwargs)
 post(url,dataEnv,hdr)
 
@@ -96,7 +97,7 @@ db_docu.query = '''
                 VALUES
                 (?,?,?,?,?,?)
                     '''
-args = (envelopeId, CODCOLIGADA,RA,IDPERLET,IDHABILITACAOFILIAL,CODCONTRATO)
+args = (envelopeId, start_var.CODCOLIGADA[0],start_var.RA[0],start_var.IDPERLET[0],start_var.IDHABILITACAOFILIAL[0],start_var.CODCONTRATO[0])
 db_docu.insert_sql(db_docu.query,args)
 
 

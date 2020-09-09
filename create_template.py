@@ -8,6 +8,7 @@ import base64
 import time
 from datetime import datetime, timedelta
 from docusign_esign.client.api_client import ApiClient
+import start_var
 
 
 #### START FUNCTIONS
@@ -34,107 +35,107 @@ def update_template():
         {
           "tabId": "c0d8c73b-fa10-4b0f-b837-f213c520ddd5",
           "tabLabel": "Cidade",
-          "value": "Santos"
+          "value": ""+start_var.CIDADE[0]+""
         },
         {
           "tabId": "ff3f1e19-0a35-4c27-abc2-97a82e6c9ecb",
           "tabLabel": "RG",
-          "value": "362.654.12-50"
+          "value": ""+start_var.RG[0]+""
         },
         {
           "tabId": "691122e1-158d-4ef6-9c7c-56ab2e6e7bb7",
           "tabLabel": "Nome Aluno",
-          "value": "L Panao"
+          "value": ""+start_var.NOMEALUNO[0]+""
         },
         {
           "tabId": "df6c1d81-98ba-4d60-b13c-c5886d4ba5f5",
           "tabLabel": "Unidade",
-          "value": "Conselheiro Nebias"
+          "value": ""+start_var.UNIDADE[0]+""
         },
         {
           "tabId": "a75c73e3-422b-4aa5-9f8f-fd10cc6c54a4",
           "tabLabel": "Sexo",
-          "value": "Masculino"
+          "value": ""+start_var.SEXO[0]+""
         },
         {
           "tabId": "0176bcc5-bce5-4e93-8abe-35a27cfd8114",
           "tabLabel": "Local Nascimento",
-          "value": "Santos"
+          "value": ""+start_var.LOCALNASC[0]+""
         },
         {
           "tabId": "a20d08ae-d5bf-4822-9bfa-b5e0d75fd292",
           "tabLabel": "Nome Resp. Financeiro",
-          "value": "Lucas Panao"
+          "value": ""+start_var.NOMERESPF[0]+""
         },
         {
           "tabId": "f7e9ed6f-019c-43b7-a7ae-28b5ac57d2fd",
           "tabLabel": "Endere\u00e7o",
-          "value": "R. Conselheiro Nebias 774"
+          "value": ""+start_var.ENDERECO[0]+""
         },
         {
           "tabId": "0d09fe4c-4bce-4452-b263-24c8086b6c88",
           "tabLabel": "Curso",
-          "value": "Ensino médio"
+          "value": ""+start_var.CURSO[0]+""
         },
         {
           "tabId": "f4330639-c935-4f47-b966-bdcff568b34d",
           "tabLabel": "CEP",
-          "value": "11070-320"
+          "value": ""+start_var.CEP[0]+""
         },
         {
           "tabId": "5ce4531c-cd85-4cb9-bdb5-bd5bab991952",
           "tabLabel": "S\u00e9rie",
-          "value": "1 ano"
+          "value": ""+start_var.SERIE[0]+""
         },
         {
           "tabId": "6c2f02de-9d6f-4a37-82bd-dd610f259bd7",
           "tabLabel": "Periodo",
-          "value": "noite"
+          "value": ""+start_var.PERIODO[0]+""
         },
         {
           "tabId": "f4d5635a-6f17-4d58-9733-2561840a57f5",
           "tabLabel": "Naturalidade",
-          "value": "Brasileiro"
+          "value": ""+start_var.NATURALIDADE[0]+""
         },
         {
           "tabId": "0253e5d4-dbc9-4eab-aa3d-3117a949c3a2",
           "tabLabel": "Data Nasc",
-          "value": "05/02/1999"
+          "value": ""+start_var.DATANASC[0]+""
         },
         {
           "tabId": "9d82230f-c28f-4801-8372-2c5bd8233adf",
           "tabLabel": "Tel Recado",
-          "value": "33015063"
+          "value": ""+start_var.TELR[0]+""
         },
         {
           "tabId": "11a39b1a-ddb9-416f-babf-18b77c22d097",
           "tabLabel": "Telefone C.",
-          "value": "33015063"
+          "value": ""+start_var.TELC[0]+""
         },
         {
           "tabId": "f5ba33d0-dead-4418-bc36-6923c08da655",
           "tabLabel": "UF",
-          "value": "SP"
+          "value": ""+start_var.UF[0]+""
         },
         {
           "tabId": "04ca7fcb-1816-49ae-8980-c903bb0598f5",
           "tabLabel": "Bairro",
-          "value": "Embare"
+          "value": ""+start_var.BAIRRO[0]+""
         },
         {
           "tabId": "2c835c90-b02b-478e-afb1-112a64def3a6",
           "tabLabel": "Pai",
-          "value": "Lucas Panao Pai"
+          "value": ""+start_var.PAI[0]+""
         },
         {
           "tabId": "056fe630-a7e8-440c-8969-e7e4848059c8",
           "tabLabel": "Mae",
-          "value": "Lucas Panao Mae"
+          "value": ""+start_var.MAE[0]+""
         },
         {
           "tabId": "146e30de-3592-476d-950a-0becb477dec8",
           "tabLabel": "RA",
-          "value": "123456"
+          "value": ""+start_var.RA_ALUNO[0]+""
         },
       ]
     }
@@ -160,6 +161,7 @@ cc_email = config['cc']['email']
 cc_name = config['cc']['name']
 #### END CONFIG
 
+start_var.start_variables_template()
 update_template()
 url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/templates/{1}/recipients/{2}/tabs'.format(signer_client_id,template_id,recipient_id)
 response = requests.put(url,json= dataTemplate,headers = hdr)
