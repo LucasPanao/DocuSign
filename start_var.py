@@ -3,7 +3,7 @@ import db_docu
 CODCOLIGADA = [];RA = [];IDPERLET = [];IDHABILITACAOFILIAL = [];CODCONTRATO=[]
 CIDADE = [];RG = [];NOMEALUNO = []; UNIDADE = []; SEXO = []; LOCALNASC = []; NOMERESPF = []
 ENDERECO = []; CURSO = []; CEP = []; SERIE = []; PERIODO = []; NATURALIDADE = []; DATANASC = []
-TELR = []; TELC = []; UF = []; BAIRRO = []; PAI = []; MAE = []; RA_ALUNO = []
+TELR = []; TELC = []; UF = []; BAIRRO = []; PAI = []; MAE = []; RA_ALUNO = []; CPF = []
 def start_variables_envelope():
     db_docu.select = '''SELECT 
         CT.CODCOLIGADA
@@ -20,6 +20,8 @@ def start_variables_envelope():
                                     AND	CT.CODCONTRATO			=	VW.CODCONTRATO
                                         INNER JOIN BD20200619_DSV.dbo.PPESSOA PP				ON
                                         VW.CODPESSOA			=	PP.CODIGO
+                                        INNER JOIN BD20200619_DSV.dbo.FCFO	FC					ON
+										FC.CODCFO				=	VW.CODCFO
     WHERE
         CT.CODCONTRATO			=	'34208'
     AND CT.RA					=	'18013107'
@@ -45,7 +47,7 @@ def start_variables_template():
     ,	VW.SEXO
     ,	VW.NATURALIDADE		[LOCALNASC]
     ,	VW.RESPFIN			[NOMERESPF]
-    ,	VW.ENDERECORESPFIN	[ENDERECO]
+    ,	FC.RUA + ' '+ FC.NUMERO + ' ' + FC.COMPLEMENTO [ENDERECO]
     ,	VW.NOME_CURSO		[CURSO]
     ,	VW.CEP_ALUNO		[CEP]
     ,	VW.NOME_SERIE		[SEIRE]
@@ -59,6 +61,7 @@ def start_variables_template():
     ,	VW.NOME_PAI			[PAI]
     ,	VW.NOME_MAE			[MAE]
     ,	CT.RA
+    ,	VW.RESPFIN_CPF
     FROM
         BD20200619_DSV.DBO.SCONTRATO CT INNER JOIN BD20200619_DSV.dbo.VW_ZZ_ALUNO_CONTRATO VW	ON
                                         CT.CODCOLIGADA			=	VW.CODCOLIGADA
@@ -68,6 +71,8 @@ def start_variables_template():
                                     AND	CT.CODCONTRATO			=	VW.CODCONTRATO
                                         INNER JOIN BD20200619_DSV.dbo.PPESSOA PP				ON
                                         VW.CODPESSOA			=	PP.CODIGO
+                                        INNER JOIN BD20200619_DSV.dbo.FCFO	FC					ON
+										FC.CODCFO				=	VW.CODCFO
     WHERE
         CT.CODCONTRATO			=	'34208'
     AND CT.RA					=	'18013107'
@@ -99,5 +104,4 @@ def start_variables_template():
         PAI.append(arrRow[18])
         MAE.append(arrRow[19])
         RA_ALUNO.append(arrRow[20])
-
-start_variables_template()
+        CPF.append(arrRow[21])

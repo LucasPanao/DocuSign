@@ -27,6 +27,10 @@ def post(url,dataEnv,hdr):
   print(envelopeId)
   return envelopeId
 
+def put():
+  url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/templates/{1}/recipients/{2}/tabs'.format(signer_client_id,template_id,recipient_id)
+  requests.put(url,json= dataTemplate,headers = hdr)
+  print('criado com sucesso')
 
 def update_template():
   global dataTemplate
@@ -137,6 +141,93 @@ def update_template():
           "tabLabel": "RA",
           "value": ""+start_var.RA_ALUNO[0]+""
         },
+        ## MATERIAL DIDÁTICO ##
+        ## MATERIAL DIDÁTICO ##
+        {
+          "tabId": "4b56506d-f591-4122-a6b0-c5c4557b7486",
+          "tabLabel": "Cidade",
+          "value": ""+start_var.CIDADE[0]+""
+        },
+        {
+          "tabId": "039825b0-454f-4773-8b42-e49a55d26cdf",
+          "tabLabel": "RG",
+          "value": ""+start_var.RG[0]+""
+        },
+        {
+          "tabId": "7b75e723-4476-4a1f-9cc5-34d9cca3cde4",
+          "tabLabel": "Nome Aluno",
+          "value": ""+start_var.NOMEALUNO[0]+""
+        },
+        {
+          "tabId": "6d16db9f-7f37-4713-b239-a517b8419660",
+          "tabLabel": "Unidade",
+          "value": ""+start_var.UNIDADE[0]+""
+        },
+        {
+          "tabId": "b0bd9d74-1963-4bee-9f92-64a8708ab11a",
+          "tabLabel": "Endere\u00e7o",
+          "value": ""+start_var.ENDERECO[0]+""
+        },
+        {
+          "tabId": "df92885b-9b5b-4fe7-868d-7704a6dbe84b",
+          "tabLabel": "CEP",
+          "value": ""+start_var.CEP[0]+""
+        },
+        {
+          "tabId": "706a49ef-09d5-44ff-a111-32014bfcdaa4",
+          "tabLabel": "S\u00e9rie",
+          "value": ""+start_var.SERIE[0]+""
+        },
+        {
+          "tabId": "471aa8f2-7d7e-43d5-b6df-5809d9a1fe6a",
+          "tabLabel": "UF",
+          "value": ""+start_var.UF[0]+""
+        },
+        {
+          "tabId": "06543537-50b4-42cb-be50-8aa6b35a9de9",
+          "tabLabel": "Bairro",
+          "value": ""+start_var.BAIRRO[0]+""
+        },
+        {
+          "tabId": "8614728c-e722-436f-8cb2-b7fe5ccbbb3a",
+          "tabLabel": "Pai",
+          "value": ""+start_var.PAI[0]+""
+        },
+        {
+          "tabId": "9c811b5b-aa2e-4750-ba1b-85f598ca189c",
+          "tabLabel": "Mae",
+          "value": ""+start_var.MAE[0]+""
+        },
+        {
+          "tabId": "f750ead6-0d19-4bfa-9e39-3bc9ef606885",
+          "tabLabel": "RA",
+          "value": ""+start_var.RA_ALUNO[0]+""
+        },
+        {
+          "tabId": "9fbc4b26-1c0b-4c59-8dde-f9b687fd2aa8",
+          "tabLabel": "Curso",
+          "value": ""+start_var.CURSO[0]+""
+        },
+        {
+          "tabId": "260e42a3-fdb0-4278-8f70-6db362e410e0",
+          "tabLabel": "Periodo",
+          "value": ""+start_var.PERIODO[0]+""
+        },
+        {
+          "tabId": "94d2888b-573a-4496-97f5-9457f70f6685",
+          "tabLabel": "Nome Resp. Financeiro",
+          "value": ""+start_var.NOMERESPF[0]+""
+        },
+        {
+          "tabId": "aefef120-9085-4bde-90c1-4c009705a730",
+          "tabLabel": "Telefone C.",
+          "value": ""+start_var.TELC[0]+""
+        },
+        {
+          "tabId": "8ca3a87b-299c-4f21-a27b-aef64582cd97",
+          "tabLabel": "CPF",
+          "value": ""+start_var.CPF[0]+""
+        },
       ]
     }
   return dataTemplate
@@ -161,9 +252,11 @@ cc_email = config['cc']['email']
 cc_name = config['cc']['name']
 #### END CONFIG
 
+'''
 start_var.start_variables_template()
 update_template()
 url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/templates/{1}/recipients/{2}/tabs'.format(signer_client_id,template_id,recipient_id)
 response = requests.put(url,json= dataTemplate,headers = hdr)
 data = response.json()
 with open('custom_tabs.json', 'w') as f:json.dump(data, f)
+'''

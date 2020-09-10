@@ -59,6 +59,27 @@ def create_envelope(customKwargs,*kwargs):
     ]
   }
   return dataEnv
+
+### GRAVANDO NO BANCO
+def gravar():
+  db_docu.query = '''
+                  INSERT INTO dbo.DOCU_ENVELOPE (DOCU_IDENVELOPE, TOTVS_CODCOLIGADA, TOTVS_IDHABILITACAOFILIAL, TOTVS_IDPERLET, TOTVS_RA, TOTVS_CODCONTRATO)
+                  VALUES
+                  (?,?,?,?,?,?)
+                      '''
+  args = (envelopeId, start_var.CODCOLIGADA[0],start_var.RA[0],start_var.IDPERLET[0],start_var.IDHABILITACAOFILIAL[0],start_var.CODCONTRATO[0])
+  print(args)
+  db_docu.insert_sql(db_docu.query,args)
+
+
+  db_docu.query = '''
+                  INSERT INTO dbo.DOCU_ENVELOPE_STATUS (DOCU_IDENVELOPE, DOCU_STATUS)
+                  VALUES
+                  (?,?)
+                      '''
+  args = (envelopeId, statusContrato)
+  db_docu.insert_sql(db_docu.query,args)
+
 #### END FUCTIONS 
 
 #### CONFIG
@@ -79,7 +100,7 @@ cc_name = config['cc']['name']
 #### END CONFIG
 
 ### CONVERTING PDF TO BASE64
-with open("contrato-final.pdf", "rb") as pdf_file:
+with open("contrato-completo.pdf", "rb") as pdf_file:
     pdf_64 = base64.b64encode(pdf_file.read())
 pdf_64 = pdf_64.decode("UTF-8")
 
@@ -87,24 +108,5 @@ pdf_64 = pdf_64.decode("UTF-8")
 start_var.start_variables_envelope()
 kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
 customKwargs = (start_var.CODCOLIGADA[0],start_var.RA[0],start_var.IDPERLET[0],start_var.IDHABILITACAOFILIAL[0],start_var.CODCONTRATO[0])
-create_envelope(customKwargs,kwargs)
-post(url,dataEnv,hdr)
-
-### GRAVANDO NO BANCO
-
-db_docu.query = '''
-                INSERT INTO dbo.DOCU_ENVELOPE (DOCU_IDENVELOPE, TOTVS_CODCOLIGADA, TOTVS_IDHABILITACAOFILIAL, TOTVS_IDPERLET, TOTVS_RA, TOTVS_CODCONTRATO)
-                VALUES
-                (?,?,?,?,?,?)
-                    '''
-args = (envelopeId, start_var.CODCOLIGADA[0],start_var.RA[0],start_var.IDPERLET[0],start_var.IDHABILITACAOFILIAL[0],start_var.CODCONTRATO[0])
-db_docu.insert_sql(db_docu.query,args)
 
 
-db_docu.query = '''
-                INSERT INTO dbo.DOCU_ENVELOPE_STATUS (DOCU_IDENVELOPE, DOCU_STATUS)
-                VALUES
-                (?,?)
-                    '''
-args = (envelopeId, statusContrato)
-db_docu.insert_sql(db_docu.query,args)
