@@ -27,7 +27,6 @@ def select_sql(select):
         row = re.sub("[()']","",row)
         row = row.replace(', ', ',').replace(' ,',',')
         rows.append(row)
-        print(rows)
     return rows
 
 def insert_sql(query,args):

@@ -28,16 +28,16 @@ def post(url,dataEnv,hdr):
   print(envelopeId)
   return envelopeId, statusContrato
 
-def create_envelope(customKwargs,*kwargs):
+def create_envelope(i,customKwargs,*kwargs):
   global dataEnv
   dataEnv = {
     "customFields": {
     "textCustomFields": [
-      {"name": "CODCOLIGADA","value": ""+start_var.CODCOLIGADA[0]+""},
-      {"name": "RA","value": ""+start_var.RA[0]+""},
-      {"name": "IDPERLET","value": ""+start_var.IDPERLET[0]+""},
-      {"name": "IDHABILITACAOFILIAL","value": ""+start_var.IDHABILITACAOFILIAL[0]+""},
-      {"name": "CODCONTRATO","value": ""+start_var.CODCONTRATO[0]+""},      
+      {"name": "CODCOLIGADA","value": ""+start_var.CODCOLIGADA[i]+""},
+      {"name": "RA","value": ""+start_var.RA[i]+""},
+      {"name": "IDPERLET","value": ""+start_var.IDPERLET[i]+""},
+      {"name": "IDHABILITACAOFILIAL","value": ""+start_var.IDHABILITACAOFILIAL[i]+""},
+      {"name": "CODCONTRATO","value": ""+start_var.CODCONTRATO[i]+""},      
     ]
   },
     "documents": [
@@ -61,13 +61,13 @@ def create_envelope(customKwargs,*kwargs):
   return dataEnv
 
 ### GRAVANDO NO BANCO
-def gravar():
+def gravar(i):
   db_docu.query = '''
                   INSERT INTO dbo.DOCU_ENVELOPE (DOCU_IDENVELOPE, TOTVS_CODCOLIGADA, TOTVS_IDHABILITACAOFILIAL, TOTVS_IDPERLET, TOTVS_RA, TOTVS_CODCONTRATO)
                   VALUES
                   (?,?,?,?,?,?)
                       '''
-  args = (envelopeId, start_var.CODCOLIGADA[0],start_var.RA[0],start_var.IDPERLET[0],start_var.IDHABILITACAOFILIAL[0],start_var.CODCONTRATO[0])
+  args = (envelopeId, start_var.CODCOLIGADA[i],start_var.RA[i],start_var.IDPERLET[i],start_var.IDHABILITACAOFILIAL[i],start_var.CODCONTRATO[i])
   print(args)
   db_docu.insert_sql(db_docu.query,args)
 
@@ -105,8 +105,12 @@ with open("contrato-completo.pdf", "rb") as pdf_file:
 pdf_64 = pdf_64.decode("UTF-8")
 
 ### CREATING ENVELOPE
-start_var.start_variables_envelope()
-kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
-customKwargs = (start_var.CODCOLIGADA[0],start_var.RA[0],start_var.IDPERLET[0],start_var.IDHABILITACAOFILIAL[0],start_var.CODCONTRATO[0])
+def create_var_envelope(i):
+  global kwargs
+  global customKwargs
+  ## INICIA OS ARRAYS COM AS INFOS DO BANCO PARA O ENVELOPE
+  start_var.start_variables_envelope()
+  kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
+  customKwargs = (start_var.CODCOLIGADA[i],start_var.RA[i],start_var.IDPERLET[i],start_var.IDHABILITACAOFILIAL[i],start_var.CODCONTRATO[i])
 
 

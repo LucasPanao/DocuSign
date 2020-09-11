@@ -5,7 +5,7 @@ CIDADE = [];RG = [];NOMEALUNO = []; UNIDADE = []; SEXO = []; LOCALNASC = []; NOM
 ENDERECO = []; CURSO = []; CEP = []; SERIE = []; PERIODO = []; NATURALIDADE = []; DATANASC = []
 TELR = []; TELC = []; UF = []; BAIRRO = []; PAI = []; MAE = []; RA_ALUNO = []; CPF = []
 def start_variables_envelope():
-    db_docu.select = '''SELECT 
+    db_docu.select = '''SELECT TOP (5) 
         CT.CODCOLIGADA
     ,	CT.IDHABILITACAOFILIAL
     ,	CT.IDPERLET
@@ -23,10 +23,8 @@ def start_variables_envelope():
                                         INNER JOIN BD20200619_DSV.dbo.FCFO	FC					ON
 										FC.CODCFO				=	VW.CODCFO
     WHERE
-        CT.CODCONTRATO			=	'34208'
-    AND CT.RA					=	'18013107'
-    AND CT.IDPERLET				=	'44'
-    AND CT.IDHABILITACAOFILIAL	=	'725'
+        CT.IDPERLET				=	'44'
+    AND CT.ASSINADO				=	'N'
                         '''
     db_docu.select_sql(db_docu.select)
     for rows in db_docu.rows:
@@ -39,7 +37,7 @@ def start_variables_envelope():
         CODCONTRATO.append(arrRow[4])
 
 def start_variables_template():
-    db_docu.select = '''SELECT 
+    db_docu.select = '''SELECT TOP (5) 
     	VW.CIDADE_ALUNO		[CIDADE]
     ,   PP.CARTIDENTIDADE	[RG]
     ,	VW.ALUNO			[NOMEALUNO]
@@ -74,10 +72,8 @@ def start_variables_template():
                                         INNER JOIN BD20200619_DSV.dbo.FCFO	FC					ON
 										FC.CODCFO				=	VW.CODCFO
     WHERE
-        CT.CODCONTRATO			=	'34208'
-    AND CT.RA					=	'18013107'
-    AND CT.IDPERLET				=	'44'
-    AND CT.IDHABILITACAOFILIAL	=	'725'
+        CT.IDPERLET				=	'44'
+    AND CT.ASSINADO				=	'N'
                     '''
     db_docu.select_sql(db_docu.select)
     for rows in db_docu.rows:
