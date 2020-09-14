@@ -6,7 +6,7 @@ import pyodbc
 from docusign_esign import EnvelopesApi, EnvelopeDefinition, TemplateRole
 import base64
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from docusign_esign.client.api_client import ApiClient
 import start_var
 
@@ -34,6 +34,8 @@ def put():
 
 def update_template(i):
   global dataTemplate
+  global nome_mes
+  nome_mes = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
   dataTemplate = {
     "textTabs": [
         {
@@ -227,6 +229,56 @@ def update_template(i):
           "tabId": "8ca3a87b-299c-4f21-a27b-aef64582cd97",
           "tabLabel": "CPF",
           "value": ""+start_var.CPF[i]+""
+        },
+        {
+          "tabId": "6d9f1565-cc04-4529-9281-a3700e0c5f2a",
+          "tabLabel": "CPF",
+          "value": ""+start_var.CPF[i]+""
+        },
+        {
+          "tabId": "6658a652-25b0-4fd6-81cc-be580695d17b",
+          "tabLabel": "CPF",
+          "value": ""+start_var.CPF[i]+""
+        },
+        {
+          "tabId": "8ef91347-d223-4b22-8d83-7742af1af8c4",
+          "tabLabel": "Dia",
+          "value": ""+str(date.today().day)+""
+        },
+        {
+          "tabId": "89d8317c-415f-4a9c-a99f-b4dfc84d8b52",
+          "tabLabel": "Dia",
+          "value": ""+str(date.today().day)+""
+        },
+        {
+          "tabId": "d5ede243-7168-4770-90df-8d17aa5daa47",
+          "tabLabel": "Dia",
+          "value": ""+str(date.today().day)+""
+        },
+        {
+          "tabId": "8b9af311-4516-4577-83c3-96e16e5ac350",
+          "tabLabel": "Mes",
+          "value": ""+str(nome_mes[date.today().month])+""
+        },
+        {
+          "tabId": "799f8ff4-1895-4619-9a8a-24db75edbcfe",
+          "tabLabel": "Mes",
+          "value": ""+str(nome_mes[date.today().month])+""
+        },
+        {
+          "tabId": "80170ae5-6da5-4273-8600-9c4d68f9e344",
+          "tabLabel": "Mes",
+          "value": ""+str(nome_mes[date.today().month])+""
+        },
+        {
+          "tabId": "ab833985-0b6b-4c9d-9b7f-a3a02d882604",
+          "tabLabel": "Ano",
+          "value": ""+str(date.today().year)+""
+        },
+        {
+          "tabId": "233c9d4f-71c0-40a0-aec3-a8d36f588964",
+          "tabLabel": "Ano",
+          "value": ""+str(date.today().year)+""
         },
       ]
     }
