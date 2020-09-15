@@ -46,7 +46,7 @@ def update_template(i):
         {
           "tabId": "ff3f1e19-0a35-4c27-abc2-97a82e6c9ecb",
           "tabLabel": "RG",
-          "value": ""+start_var.RG[i]+""
+          "value": ""+start_var.RESPFIN_RG[i]+""
         },
         {
           "tabId": "691122e1-158d-4ef6-9c7c-56ab2e6e7bb7",
@@ -143,6 +143,72 @@ def update_template(i):
           "tabLabel": "RA",
           "value": ""+start_var.RA_ALUNO[i]+""
         },
+        {
+          "tabId": "929009c1-39bd-4dfd-9d85-805f411d3dbc",
+          "tabLabel": "Endere\u00e7o",
+          "value": ""+start_var.ENDERECO[i]+""
+        },
+        {
+          "tabId": "cd5f8aa9-1d40-42ee-a018-dd1995a9f22f",
+          "tabLabel": "ValorBrutoC",
+          "value": ""+start_var.VALORT[i]+""
+        },
+        {
+          "tabId": "fd6640aa-0474-4013-8b11-ef453f2be50d",
+          "tabLabel": "ValorBrutoCEX",
+          "value": ""+start_var.VALORTEX[i]+""
+        },
+        {
+          "tabId": "53d8fdc2-f63d-4928-a427-307af6b45102",
+          "tabLabel": "ValorParcelaC",
+          "value": ""+start_var.VALORP[i]+""
+        },
+        {
+          "tabId": "2e98660d-86f4-4bfa-9b10-07fc41eede28",
+          "tabLabel": "ValorParcelaCEX",
+          "value": ""+start_var.VALORPEX[i]+""
+        },
+        {
+          "tabId": "4a98c742-6ca6-4cbb-87a9-4eb49a8615d0",
+          "tabLabel": "Nome Resp. Financeiro",
+          "value": ""+start_var.NOMERESPF[i]+""
+        },
+        {
+          "tabId": "28e6eede-dd3f-4574-9294-f5d49d91e97a",
+          "tabLabel": "CPF",
+          "value": ""+start_var.CPF[i]+""
+        },
+        {
+          "tabId": "3ab10a48-a5c5-4a80-a2f1-c793df800468",
+          "tabLabel": "Nome Aluno",
+          "value": ""+start_var.NOMEALUNO[i]+""
+        },
+        {
+          "tabId": "ce7b0957-887c-4fa3-8fcb-c849bd98d409",
+          "tabLabel": "CIDADECOLIGADA",
+          "value": ""+start_var.CIDADE_COLIGADA[i]+""
+        },
+        {
+          "tabId": "5cb7f519-f1a1-45c4-b1d9-1418538ff113",
+          "tabLabel": "NOMEFANTASIA",
+          "value": ""+start_var.NOMEFANTASIA[i]+""
+        },
+        {
+          "tabId": "a409b4a7-6586-4d39-b6a8-9732353ef5cb",
+          "tabLabel": "RG",
+          "value": ""+start_var.RESPFIN_RG[i]+""
+        },
+        {
+          "tabId": "95acaa1b-0f87-46bc-a152-82751668032a",
+          "tabLabel": "CURSO",
+          "value": ""+start_var.CURSO[i]+""
+        },
+        {
+          "tabId": "4d638d5f-70d0-4099-8ee6-1dcec98efcb5",
+          "tabLabel": "ANOLETIVO",
+          "value": ""+start_var.ANOLETIVO[i]+""
+        },
+        
         ## MATERIAL DIDÁTICO ##
         ## MATERIAL DIDÁTICO ##
         {
@@ -153,7 +219,7 @@ def update_template(i):
         {
           "tabId": "039825b0-454f-4773-8b42-e49a55d26cdf",
           "tabLabel": "RG",
-          "value": ""+start_var.RG[i]+""
+          "value": ""+start_var.RESPFIN_RG[i]+""
         },
         {
           "tabId": "7b75e723-4476-4a1f-9cc5-34d9cca3cde4",
@@ -285,6 +351,33 @@ def update_template(i):
           "tabLabel": "ANOLETIVO",
           "value": ""+start_var.ANOLETIVO[i]+""
         },
+        {
+          "tabId": "bf806383-f974-4f3c-bef8-13cb6b9dd5e0",
+          "tabLabel": "ValorBrutoMD",
+          "value": ""+start_var.VALORT_MD[i]+""
+        },
+        {
+          "tabId": "735aa650-e945-4191-9dbf-ef4b021fd4e9",
+          "tabLabel": "NumeroParcelas",
+          "value": ""+start_var.NUMEROPARCELAS_MD[i]+""
+        },
+        {
+          "tabId": "0b080b65-a3a0-4f66-a975-b7174bff7d59",
+          "tabLabel": "NumeroParcelasEX",
+          "value": ""+start_var.NUMEROPARCELAS_MD_EX[i]+""
+        },
+        {
+          "tabId": "67f5b2f7-3390-45a7-955b-44aa73510aad",
+          "tabLabel": "ValorParcelaMD",
+          "value": ""+start_var.VALORP_MD[i]+""
+        },
+        {
+          "tabId": "fd827df3-18bf-42bd-9482-f97de7befe82",
+          "tabLabel": "ANOLETIVO",
+          "value": ""+start_var.ANOLETIVO[i]+""
+        },
+        
+
         ## Termo Aditivo ##
         {
           "tabId": "e5e2c3a3-f830-4e04-9ccb-f78680d63754",

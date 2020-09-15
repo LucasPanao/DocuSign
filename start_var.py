@@ -1,38 +1,150 @@
 import db_docu
 
-CODCOLIGADA = [];RA = [];IDPERLET = [];IDHABILITACAOFILIAL = [];CODCONTRATO=[]
-CIDADE = [];RG = [];NOMEALUNO = []; UNIDADE = []; SEXO = []; LOCALNASC = []; NOMERESPF = []
-ENDERECO = []; CURSO = []; CEP = []; SERIE = []; PERIODO = []; NATURALIDADE = []; DATANASC = []
-TELR = []; TELC = []; UF = []; BAIRRO = []; PAI = []; MAE = []; RA_ALUNO = []; CPF = []; CODCONTRATO_ALUNO=[]; ANOLETIVO = []
+CODCOLIGADA = []
+RA = []
+IDPERLET = []
+IDHABILITACAOFILIAL = []
+CODCONTRATO = []
+CIDADE = []
+RG = []
+NOMEALUNO = []
+UNIDADE = []
+SEXO = []
+LOCALNASC = []
+NOMERESPF = []
+ENDERECO = []
+CURSO = []
+CEP = []
+SERIE = []
+PERIODO = []
+NATURALIDADE = []
+DATANASC = []
+TELR = []
+TELC = []
+UF = []
+BAIRRO = []
+PAI = []
+MAE = []
+RA_ALUNO = []
+CPF = []
+CODCONTRATO_ALUNO = []
+ANOLETIVO = []
+RESP_EMAIL = []
+VALORT = []
+VALORTEX = []
+VALORP = []
+VALORPEX = []
+CIDADE_COLIGADA = []
+NOMEFANTASIA = []
+RESPFIN_RG = []
+VALORT_MD = []
+NUMEROPARCELAS_MD = []
+NUMEROPARCELAS_MD_EX = []
+VALORP_MD = []
 
 ### ARRAYS ADITIVO ###
-BOLSA1 = []; BOLSA2 = []; BOLSA3 = []; BOLSA4 = [];BOLSA5 = []; BOLSA6 = [];BOLSA7 = []; BOLSA8 = [];BOLSA9 = []; BOLSA10 = [];BOLSA11 = []; BOLSA12 = [];BOLSA13 = []
-VALB = []; VALB2 = []; VALB3 = []; VALB4 = []; VALB5 = []; VALB6 = []; VALB7 = []; VALB8 = []; VALB9 = []; VALB10 = []; VALB11 = []; VALB12 = []; VALB13 = []
-VALDESC1 = []; VALDESC2 = []; VALDESC3 = []; VALDESC4 = []; VALDESC5 = []; VALDESC6 = []; VALDESC7 = []; VALDESC8 = []; VALDESC9 = []; VALDESC10 = []; VALDESC11 = []; VALDESC12 = []; VALDESC13 = []
-VALLQ1 = []; VALLQ2 = []; VALLQ3 = []; VALLQ4 = []; VALLQ5 = []; VALLQ6 = []; VALLQ7 = []; VALLQ8 = []; VALLQ9 = []; VALLQ10 = []; VALLQ11 = []; VALLQ12 = []; VALLQ13 = []
-RA_AD = [];  IDHABILITACAOFILIAL_AD = []; CODCOLIGADA_AD = []; IDPERLET_AD = []; CODCONTRATO_AD = []; NOME_AD =[]; ANOLETIVO_AD = []; CPF_AD = []; RG_AD = []; RESP_AD = []; UNIDADE_AD = []; CURSO_AD = []
+BOLSA1 = []
+BOLSA2 = []
+BOLSA3 = []
+BOLSA4 = []
+BOLSA5 = []
+BOLSA6 = []
+BOLSA7 = []
+BOLSA8 = []
+BOLSA9 = []
+BOLSA10 = []
+BOLSA11 = []
+BOLSA12 = []
+BOLSA13 = []
+VALB = []
+VALB2 = []
+VALB3 = []
+VALB4 = []
+VALB5 = []
+VALB6 = []
+VALB7 = []
+VALB8 = []
+VALB9 = []
+VALB10 = []
+VALB11 = []
+VALB12 = []
+VALB13 = []
+VALDESC1 = []
+VALDESC2 = []
+VALDESC3 = []
+VALDESC4 = []
+VALDESC5 = []
+VALDESC6 = []
+VALDESC7 = []
+VALDESC8 = []
+VALDESC9 = []
+VALDESC10 = []
+VALDESC11 = []
+VALDESC12 = []
+VALDESC13 = []
+VALLQ1 = []
+VALLQ2 = []
+VALLQ3 = []
+VALLQ4 = []
+VALLQ5 = []
+VALLQ6 = []
+VALLQ7 = []
+VALLQ8 = []
+VALLQ9 = []
+VALLQ10 = []
+VALLQ11 = []
+VALLQ12 = []
+VALLQ13 = []
+RA_AD = []
+IDHABILITACAOFILIAL_AD = []
+CODCOLIGADA_AD = []
+IDPERLET_AD = []
+CODCONTRATO_AD = []
+NOME_AD = []
+ANOLETIVO_AD = []
+CPF_AD = []
+RG_AD = []
+RESP_AD = []
+UNIDADE_AD = []
+CURSO_AD = []
+
 
 def start_variables_envelope():
-    db_docu.select = '''SELECT TOP (5) 
+    db_docu.select = '''SELECT
         CT.CODCOLIGADA
     ,	CT.IDHABILITACAOFILIAL
     ,	CT.IDPERLET
     ,	CT.RA
     ,	CT.CODCONTRATO
     FROM
-        BD20200619_DSV.DBO.SCONTRATO CT INNER JOIN BD20200619_DSV.dbo.VW_ZZ_ALUNO_CONTRATO VW	ON
-                                        CT.CODCOLIGADA			=	VW.CODCOLIGADA
-                                    AND CT.IDHABILITACAOFILIAL	=	VW.IDHABILITACAOFILIAL
-                                    AND CT.IDPERLET				=	VW.IDPERLET
-                                    AND CT.RA					=	VW.RA
-                                    AND	CT.CODCONTRATO			=	VW.CODCONTRATO
-                                        INNER JOIN BD20200619_DSV.dbo.PPESSOA PP				ON
-                                        VW.CODPESSOA			=	PP.CODIGO
-                                        INNER JOIN BD20200619_DSV.dbo.FCFO	FC					ON
-										FC.CODCFO				=	VW.CODCFO
-    WHERE
-        CT.IDPERLET				=	'44'
-    AND CT.ASSINADO				=	'N'
+	BD20200619_DSV.DBO.SCONTRATO CT INNER JOIN BD20200619_DSV.dbo.VW_ZZ_ALUNO_CONTRATO VW					( NOLOCK )		ON
+									CT.CODCOLIGADA			=	VW.CODCOLIGADA
+								AND CT.IDHABILITACAOFILIAL	=	VW.IDHABILITACAOFILIAL
+								AND CT.IDPERLET				=	VW.IDPERLET
+								AND CT.RA					=	VW.RA
+								AND	CT.CODCONTRATO			=	VW.CODCONTRATO
+									INNER JOIN BD20200619_DSV.dbo.PPESSOA PP								( NOLOCK )		ON
+									VW.CODPESSOA			=	PP.CODIGO
+									INNER JOIN BD20200619_DSV.dbo.FCFO	FC									( NOLOCK )		ON
+									FC.CODCFO				=	VW.CODCFO						
+									INNER JOIN BD20200619_DSV.dbo.VW_ZZ_FIN_CONTRATO_PARCELAS PARCELA		( NOLOCK )		ON
+									PARCELA.IDPERLET		=	CT.IDPERLET
+								AND	PARCELA.CODCOLIGADA		=	CT.CODCOLIGADA
+								AND	PARCELA.CODCONTRATO		=	CT.CODCONTRATO
+								AND PARCELA.RA				=	CT.RA
+									INNER JOIN	INTEGRA_RMK.dbo.DOCU_ENVELOPE						EN		( NOLOCK )		ON
+									CT.RA					=	EN.TOTVS_RA
+								AND CT.IDPERLET				=	EN.TOTVS_IDPERLET
+								AND CT.IDHABILITACAOFILIAL	=	EN.TOTVS_IDHABILITACAOFILIAL
+								AND CT.CODCOLIGADA			=	EN.TOTVS_CODCOLIGADA
+								AND CT.CODCONTRATO			=	EN.TOTVS_CODCONTRATO
+									INNER JOIN	INTEGRA_RMK.dbo.DOCU_ENVELOPE_STATUS				ST		( NOLOCK )		ON
+							EN.DOCU_IDENVELOPE		=	ST.DOCU_IDENVELOPE		
+WHERE
+	ST.DOCU_STATUS			=	'completed'
+AND CT.RA					=	'12016903'
+AND CT.CODCOLIGADA			=	'1'
+AND CT.CODCONTRATO			=	'34259'
                         '''
     db_docu.select_sql(db_docu.select)
     for rows in db_docu.rows:
@@ -44,46 +156,119 @@ def start_variables_envelope():
         IDHABILITACAOFILIAL.append(arrRow[3])
         CODCONTRATO.append(arrRow[4])
 
+
 def start_variables_template():
-    db_docu.select = '''SELECT TOP (5) 
-    	VW.CIDADE_ALUNO		[CIDADE]
-    ,   PP.CARTIDENTIDADE	[RG]
-    ,	VW.ALUNO			[NOMEALUNO]
-    ,	VW.UNIDADE
-    ,	VW.SEXO
-    ,	VW.NATURALIDADE		[LOCALNASC]
-    ,	VW.RESPFIN			[NOMERESPF]
-    ,	FC.RUA + ' '+ FC.NUMERO + ' ' + FC.COMPLEMENTO [ENDERECO]
-    ,	VW.NOME_CURSO		[CURSO]
-    ,	VW.CEP_ALUNO		[CEP]
-    ,	VW.NOME_SERIE		[SEIRE]
-    ,	VW.PERIODO
-    ,	VW.NATURALIDADE		
-    ,	CONVERT(VARCHAR(10),PP.DTNASCIMENTO,103)		[DATANASC]
-    ,	VW.RESPFIN_TEL		[TELR]
-    ,	VW.TEL1_ALUNO		[TELC]
-    ,	VW.ESTADONATAL		[UF]
-    ,	VW.BAIRRO_ALUNO		[BAIRRO]
-    ,	VW.NOME_PAI			[PAI]
-    ,	VW.NOME_MAE			[MAE]
-    ,	CT.RA
-    ,	VW.RESPFIN_CPF
-    ,	CT.CODCONTRATO
-    ,	VW.ANO_LETIVO		[ANOLETIVO]
-    FROM
-        BD20200619_DSV.DBO.SCONTRATO CT INNER JOIN BD20200619_DSV.dbo.VW_ZZ_ALUNO_CONTRATO VW	ON
-                                        CT.CODCOLIGADA			=	VW.CODCOLIGADA
-                                    AND CT.IDHABILITACAOFILIAL	=	VW.IDHABILITACAOFILIAL
-                                    AND CT.IDPERLET				=	VW.IDPERLET
-                                    AND CT.RA					=	VW.RA
-                                    AND	CT.CODCONTRATO			=	VW.CODCONTRATO
-                                        INNER JOIN BD20200619_DSV.dbo.PPESSOA PP				ON
-                                        VW.CODPESSOA			=	PP.CODIGO
-                                        INNER JOIN BD20200619_DSV.dbo.FCFO	FC					ON
-										FC.CODCFO				=	VW.CODCFO
-    WHERE
-        CT.IDPERLET				=	'44'
-    AND CT.ASSINADO				=	'N'
+    db_docu.select = '''SELECT DISTINCT
+    VW.CIDADE_ALUNO		[CIDADE]
+,   PP.CARTIDENTIDADE	[RG]
+,	VW.ALUNO			[NOMEALUNO]
+,	VW.UNIDADE
+,	CASE WHEN(VW.SEXO = 'F') THEN 'FEMININO' ELSE 'MASCULINO' END [SEXO]
+,	VW.NATURALIDADE		[LOCALNASC]
+,	VW.RESPFIN			[NOMERESPF]
+,	FC.RUA + ' '+ FC.NUMERO + ' ' + FC.COMPLEMENTO [ENDERECO]
+,	VW.NOME_CURSO		[CURSO]
+,	VW.CEP_ALUNO		[CEP]
+,	VW.NOME_SERIE		[SEIRE]
+,	VW.PERIODO
+,	VW.NATURALIDADE		
+,	CONVERT(VARCHAR(10),PP.DTNASCIMENTO,103)		[DATANASC]
+,	VW.RESPFIN_TEL		[TELR]
+,	VW.TEL1_ALUNO		[TELC]
+,	AL.RESPFIN_ESTADO	[UF]
+,	VW.BAIRRO_ALUNO		[BAIRRO]
+,	VW.NOME_PAI			[PAI]
+,	VW.NOME_MAE			[MAE]
+,	CT.RA
+,	VW.RESPFIN_CPF
+,	CT.CODCONTRATO
+,	VW.ANO_LETIVO		[ANOLETIVO]
+,	VW.RESPFIN_EMAIL	[EMAIL]
+,	CONVERT(VARCHAR(100),CAST(PARCELA.VALOR * (SELECT COUNT(VALOR) FROM BD20200619_DSV.dbo.VW_ZZ_FIN_CONTRATO_PARCELAS WHERE CODCOLIGADA = CT.CODCOLIGADA AND RA = CT.RA
+																							AND IDPERLET = CT.IDPERLET AND CODCONTRATO = CT.CODCONTRATO)
+																							AS NUMERIC (15,2)))
+						[VALT]
+,	BD20200619_DSV.dbo.Extenso(PARCELA.VALOR * (SELECT COUNT(VALOR) FROM BD20200619_DSV.dbo.VW_ZZ_FIN_CONTRATO_PARCELAS WHERE CODCOLIGADA = CT.CODCOLIGADA AND RA = CT.RA
+																							AND IDPERLET = CT.IDPERLET AND CODCONTRATO = CT.CODCONTRATO))
+						[EXTENSO_VALT]
+,	CONVERT(VARCHAR(100),CAST(PARCELA.VALOR AS NUMERIC (15,2))) [VALOR]
+,	BD20200619_DSV.dbo.Extenso(PARCELA.VALOR) [EXTENSO_VALOR]
+,	GC.CIDADE			[CIDADE_COLIGADA]
+,	GC.NOMEFANTASIA
+,	VW.RGRESPFIN
+,	CONVERT(VARCHAR(100),CAST(plMd.VALOR AS DECIMAL(6,2)) * plMd.NPARCELA) 'VALOR_TOTAL_MATERIAL_DIDATICO'
+,	plMd.NPARCELA [NUM_PARCELA]
+,	REPLACE(BD20200619_DSV.dbo.Extenso(plMd.NPARCELA),' REAIS','') [NUM_PARCELA_EXT]
+,	CONVERT(VARCHAR(100),CAST(plMd.VALOR AS DECIMAL(6,2))) 'VALOR_MATERIAL_DIDATICO'		
+FROM
+	BD20200619_DSV.DBO.SCONTRATO CT INNER JOIN BD20200619_DSV.dbo.VW_ZZ_ALUNO_CONTRATO VW					( NOLOCK )		ON
+									CT.CODCOLIGADA			=	VW.CODCOLIGADA
+								AND CT.IDHABILITACAOFILIAL	=	VW.IDHABILITACAOFILIAL
+								AND CT.IDPERLET				=	VW.IDPERLET
+								AND CT.RA					=	VW.RA
+								AND	CT.CODCONTRATO			=	VW.CODCONTRATO
+									INNER JOIN BD20200619_DSV.dbo.VW_ZZ_ALUNO_MATRICULA AL					( NOLOCK )		ON
+									AL.RA				=	VW.RA
+								AND AL.CODCOLIGADA		=	VW.CODCOLIGADA
+								AND	AL.IDHABILITACAOFILIAL	=	VW.IDHABILITACAOFILIAL
+								AND AL.IDPERLET			=	VW.IDPERLET
+									INNER JOIN BD20200619_DSV.dbo.PPESSOA PP								( NOLOCK )		ON
+									VW.CODPESSOA			=	PP.CODIGO
+									INNER JOIN BD20200619_DSV.dbo.FCFO	FC									( NOLOCK )		ON
+									FC.CODCFO				=	VW.CODCFO						
+									INNER JOIN BD20200619_DSV.dbo.VW_ZZ_FIN_CONTRATO_PARCELAS PARCELA		( NOLOCK )		ON
+									PARCELA.IDPERLET		=	CT.IDPERLET
+								AND	PARCELA.CODCOLIGADA		=	CT.CODCOLIGADA
+								AND	PARCELA.CODCONTRATO		=	CT.CODCONTRATO
+								AND PARCELA.RA				=	CT.RA
+									INNER JOIN	BD20200619_DSV.dbo.GCOLIGADA						GC		( NOLOCK )		ON
+									GC.CODCOLIGADA			=	VW.CODCOLIGADA
+									/* VALOR MATERIAL DIDATICO INICIO */
+									INNER JOIN	(
+									Select
+									  plPgto.CODCOLIGADA
+									, plPgto.IDPERLET
+									, plPgto.CODPLANOPGTO
+									, plPgto.DTINICIO
+									, plPgto.DTFIM
+									, hbPgto.IDHABILITACAOFILIAL
+									, srvPgto.CODSERVICO
+									, prcPgto.VALOR
+									, prcPgto.COTA
+									, prcPgto.DESCONTO
+									, prcPgto.DTCOMPETENCIA
+									, prcPgto.DTVENCIMENTO
+									, prcPgto.PARCELA
+									, prcPgto.TIPOPARCELA
+									, (SELECT COUNT(PARCELA) FROM BD20200619_DSV.dbo.SPARCPLANO WHERE  
+										CODCOLIGADA = prcPgto.CODCOLIGADA and IDPERLET = prcPgto.IDPERLET and CODPLANOPGTO = prcPgto.CODPLANOPGTO) NPARCELA
+									from BD20200619_DSV.dbo.SPLANOPGTO (nolock) plPgto
+									inner join BD20200619_DSV.dbo.SHABMODELOPGTO (nolock) hbPgto on plPgto.CODCOLIGADA = hbPgto.CODCOLIGADA
+																			 and plPgto.IDPERLET = hbPgto.IDPERLET
+																			 and plPgto.CODPLANOPGTO = hbPgto.CODPLANOPGTO
+									inner join BD20200619_DSV.dbo.SSERVICOPLANOPGTO (nolock) srvPgto on srvPgto.CODCOLIGADA =  plPgto.CODCOLIGADA
+																				 and srvPgto.IDPERLET = plPgto.IDPERLET
+																				 and srvPgto.CODPLANOPGTO = plPgto.CODPLANOPGTO
+									inner join BD20200619_DSV.dbo.SPARCPLANO (nolock) prcPgto on prcPgto.CODCOLIGADA = plPgto.CODCOLIGADA
+																		  and prcPgto.IDPERLET = plPgto.IDPERLET
+																		  and prcPgto.CODPLANOPGTO = plPgto.CODPLANOPGTO
+									where srvPgto.CODSERVICO = '4'
+									) plMd on plMd.CODCOLIGADA = CT.CODCOLIGADA
+										  and plMd.IDPERLET = CT.IDPERLET
+										  and plMd.IDHABILITACAOFILIAL = CT.IDHABILITACAOFILIAL								
+									INNER JOIN	INTEGRA_RMK.dbo.DOCU_ENVELOPE						EN		( NOLOCK )		ON
+							CT.RA					=	EN.TOTVS_RA
+						AND CT.IDPERLET				=	EN.TOTVS_IDPERLET
+						AND CT.IDHABILITACAOFILIAL	=	EN.TOTVS_IDHABILITACAOFILIAL
+						AND CT.CODCOLIGADA			=	EN.TOTVS_CODCOLIGADA
+						AND CT.CODCONTRATO			=	EN.TOTVS_CODCONTRATO
+									INNER JOIN	INTEGRA_RMK.dbo.DOCU_ENVELOPE_STATUS				ST		( NOLOCK )		ON
+							EN.DOCU_IDENVELOPE		=	ST.DOCU_IDENVELOPE			
+WHERE
+	ST.DOCU_STATUS			=	'completed'
+AND CT.RA					=	'12016903'
+AND CT.CODCOLIGADA			=	'1'
+AND CT.CODCONTRATO			=	'34259'
                     '''
     db_docu.select_sql(db_docu.select)
     for rows in db_docu.rows:
@@ -113,6 +298,19 @@ def start_variables_template():
         CPF.append(arrRow[21])
         CODCONTRATO_ALUNO.append(arrRow[22])
         ANOLETIVO.append(arrRow[23])
+        RESP_EMAIL.append(arrRow[24])
+        VALORT.append(arrRow[25].replace('.', ','))
+        VALORTEX.append(arrRow[26])
+        VALORP.append(arrRow[27].replace('.', ','))
+        VALORPEX.append(arrRow[28])
+        CIDADE_COLIGADA.append(arrRow[29])
+        NOMEFANTASIA.append(arrRow[30])
+        RESPFIN_RG.append(arrRow[31])
+        VALORT_MD.append(arrRow[32].replace('.', ','))
+        NUMEROPARCELAS_MD.append(arrRow[33])
+        NUMEROPARCELAS_MD_EX.append(arrRow[34])
+        VALORP_MD.append(arrRow[35].replace('.', ','))
+
 
 def start_variables_template_aditivo():
     db_docu.select = '''SELECT DISTINCT
@@ -412,9 +610,12 @@ AND VW.PARCELA				=	'13'
 ,	
 /*  --------------------------------------- DESCONTO 1 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -425,16 +626,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'1'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC1
+)),'--X--X--') VALDESC1
 
 /*  --------------------------------------- DESCONTO 1 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 2 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -445,16 +649,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'2'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC2
+)),'--X--X--') VALDESC2
 
 /*  --------------------------------------- DESCONTO 2 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 3 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -465,16 +672,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'3'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC3
+)),'--X--X--') VALDESC3
 
 /*  --------------------------------------- DESCONTO 3 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 4 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -485,16 +695,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'4'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC4
+)),'--X--X--') VALDESC4
 
 /*  --------------------------------------- DESCONTO 4 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 5 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -505,16 +718,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'5'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC5
+)),'--X--X--') VALDESC5
 
 /*  --------------------------------------- DESCONTO 5 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 6 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -525,16 +741,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'6'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC6
+)),'--X--X--') VALDESC6
 
 /*  --------------------------------------- DESCONTO 6 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 7 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -545,16 +764,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'7'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC7
+)),'--X--X--') VALDESC7
 
 /*  --------------------------------------- DESCONTO 7 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 8 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -565,16 +787,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'8'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC8
+)),'--X--X--') VALDESC8
 
 /*  --------------------------------------- DESCONTO 8 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 9 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -585,16 +810,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'9'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC9
+)),'--X--X--') VALDESC9
 
 /*  --------------------------------------- DESCONTO 9 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 10 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -605,16 +833,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'10'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC10
+)),'--X--X--') VALDESC10
 
 /*  --------------------------------------- DESCONTO 10 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 11 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -625,16 +856,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'11'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC11
+)),'--X--X--') VALDESC11
 
 /*  --------------------------------------- DESCONTO 11 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 12 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -645,16 +879,19 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'12'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC12
+)),'--X--X--') VALDESC12
 
 /*  --------------------------------------- DESCONTO 12 --------------------------------*/
 
 ,	
 /*  --------------------------------------- DESCONTO 13 --------------------------------*/
 ISNULL(
+CONVERT(VARCHAR(255),
 (
 SELECT
-	CONVERT(VARCHAR(100),CAST(VW.VLDESCONTO AS NUMERIC(15,2))) 'VALOR_DESCONTO'
+	CAST(VALOR.VALOR_PARCELA AS NUMERIC (15,2)) -
+	(CAST((MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) - ( MAX(CAST(VALOR_PARCELA AS NUMERIC (15,2))) * 
+	CAST(SUM(CAST(VLBOLSADESCONTO AS NUMERIC (15,2))/100) AS NUMERIC (15,2)))) AS NUMERIC (15,2))) 'VALOR_DESCONTO'
 FROM
 	BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS VW
 WHERE
@@ -665,7 +902,7 @@ AND VW.IDPERLET				=	C.IDPERLET
 AND VW.CODCONTRATO			=	C.CODCONTRATO
 AND VW.PARCELA				=	'13'
 --GROUP BY VW.RA,VW.IDHABILITACAOFILIAL,VW.CODCOLIGADA,VW.IDPERLET,VW.CODCONTRATO,VW.PARCELA
-),'--X--X--') VALDESC13
+)),'--X--X--') VALDESC13
 
 /*  --------------------------------------- DESCONTO 13 --------------------------------*/
 
@@ -1236,13 +1473,13 @@ AND C.CODCONTRATO			=	'34259'
 --AND C.DTASSINATURA			IS NULL
 --GROUP BY C.RA,C.IDHABILITACAOFILIAL,C.CODCOLIGADA,C.IDPERLET,C.CODCONTRATO,VALOR.PARCELA,CT.CPFRESPFIN,CT.RESPFIN_CPF,CT.RGRESPFIN,VALOR.ALUNO,VALOR.ANO_LETIVO
 
---PARCELA, IDPARCELA, C.RA                  
+--PARCELA, IDPARCELA, C.RA                
     '''
     db_docu.select_sql(db_docu.select)
     for rows in db_docu.rows:
         row = rows.rstrip()
         arrRow = row.split(",")
-        VALB.append(arrRow[0].replace('.',','))
+        VALB.append(arrRow[0].replace('.', ','))
         RA_AD.append(arrRow[1])
         IDHABILITACAOFILIAL_AD.append(arrRow[2])
         CODCOLIGADA_AD.append(arrRow[3])
@@ -1268,48 +1505,44 @@ AND C.CODCONTRATO			=	'34259'
         BOLSA11.append(arrRow[23])
         BOLSA12.append(arrRow[24])
         BOLSA13.append(arrRow[25])
-        VALDESC1.append(arrRow[26].replace('.',','))
-        VALDESC2.append(arrRow[27].replace('.',','))
-        VALDESC3.append(arrRow[28].replace('.',','))
-        VALDESC4.append(arrRow[29].replace('.',','))
-        VALDESC5.append(arrRow[30].replace('.',','))
-        VALDESC6.append(arrRow[31].replace('.',','))
-        VALDESC7.append(arrRow[32].replace('.',','))
-        VALDESC8.append(arrRow[33].replace('.',','))
-        VALDESC9.append(arrRow[34].replace('.',','))
-        VALDESC10.append(arrRow[35].replace('.',','))
-        VALDESC11.append(arrRow[36].replace('.',','))
-        VALDESC12.append(arrRow[37].replace('.',','))
-        VALDESC13.append(arrRow[38].replace('.',','))
-        VALLQ1.append(arrRow[39].replace('.',','))
-        VALLQ2.append(arrRow[40].replace('.',','))
-        VALLQ3.append(arrRow[41].replace('.',','))
-        VALLQ4.append(arrRow[42].replace('.',','))
-        VALLQ5.append(arrRow[43].replace('.',','))
-        VALLQ6.append(arrRow[44].replace('.',','))
-        VALLQ7.append(arrRow[45].replace('.',','))
-        VALLQ8.append(arrRow[46].replace('.',','))
-        VALLQ9.append(arrRow[47].replace('.',','))
-        VALLQ10.append(arrRow[48].replace('.',','))
-        VALLQ11.append(arrRow[49].replace('.',','))
-        VALLQ12.append(arrRow[50].replace('.',','))
-        VALLQ13.append(arrRow[51].replace('.',','))
-        VALB2.append(arrRow[52].replace('.',','))
-        VALB3.append(arrRow[53].replace('.',','))
-        VALB4.append(arrRow[54].replace('.',','))
-        VALB5.append(arrRow[55].replace('.',','))
-        VALB6.append(arrRow[56].replace('.',','))
-        VALB7.append(arrRow[57].replace('.',','))
-        VALB8.append(arrRow[58].replace('.',','))
-        VALB9.append(arrRow[59].replace('.',','))
-        VALB10.append(arrRow[60].replace('.',','))
-        VALB11.append(arrRow[61].replace('.',','))
-        VALB12.append(arrRow[62].replace('.',','))
-        VALB13.append(arrRow[63].replace('.',','))        
-        print(arrRow)
-        print(CPF_AD[0])
-        print(UNIDADE_AD[0])
-        print(VALDESC1[0])
+        VALDESC1.append(arrRow[26].replace('.', ','))
+        VALDESC2.append(arrRow[27].replace('.', ','))
+        VALDESC3.append(arrRow[28].replace('.', ','))
+        VALDESC4.append(arrRow[29].replace('.', ','))
+        VALDESC5.append(arrRow[30].replace('.', ','))
+        VALDESC6.append(arrRow[31].replace('.', ','))
+        VALDESC7.append(arrRow[32].replace('.', ','))
+        VALDESC8.append(arrRow[33].replace('.', ','))
+        VALDESC9.append(arrRow[34].replace('.', ','))
+        VALDESC10.append(arrRow[35].replace('.', ','))
+        VALDESC11.append(arrRow[36].replace('.', ','))
+        VALDESC12.append(arrRow[37].replace('.', ','))
+        VALDESC13.append(arrRow[38].replace('.', ','))
+        VALLQ1.append(arrRow[39].replace('.', ','))
+        VALLQ2.append(arrRow[40].replace('.', ','))
+        VALLQ3.append(arrRow[41].replace('.', ','))
+        VALLQ4.append(arrRow[42].replace('.', ','))
+        VALLQ5.append(arrRow[43].replace('.', ','))
+        VALLQ6.append(arrRow[44].replace('.', ','))
+        VALLQ7.append(arrRow[45].replace('.', ','))
+        VALLQ8.append(arrRow[46].replace('.', ','))
+        VALLQ9.append(arrRow[47].replace('.', ','))
+        VALLQ10.append(arrRow[48].replace('.', ','))
+        VALLQ11.append(arrRow[49].replace('.', ','))
+        VALLQ12.append(arrRow[50].replace('.', ','))
+        VALLQ13.append(arrRow[51].replace('.', ','))
+        VALB2.append(arrRow[52].replace('.', ','))
+        VALB3.append(arrRow[53].replace('.', ','))
+        VALB4.append(arrRow[54].replace('.', ','))
+        VALB5.append(arrRow[55].replace('.', ','))
+        VALB6.append(arrRow[56].replace('.', ','))
+        VALB7.append(arrRow[57].replace('.', ','))
+        VALB8.append(arrRow[58].replace('.', ','))
+        VALB9.append(arrRow[59].replace('.', ','))
+        VALB10.append(arrRow[60].replace('.', ','))
+        VALB11.append(arrRow[61].replace('.', ','))
+        VALB12.append(arrRow[62].replace('.', ','))
+        VALB13.append(arrRow[63].replace('.', ','))
+
+
 start_variables_template_aditivo()
-
-
