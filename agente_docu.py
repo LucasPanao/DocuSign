@@ -2,7 +2,12 @@ import db_docu
 import start_var
 import template
 import envelope
+import refrest_token
 i = 0
+
+## INICIA O TOKEN 
+refrest_token.refresh()
+refrest_token.set_token(refrest_token.token)
 
 ## INICIA OS ARRAYS COM AS INFOS DO BANCO PARA O TEMPLATE
 start_var.start_variables_template()

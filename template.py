@@ -444,6 +444,21 @@ def update_template(i):
           "tabLabel": "CodContrato",
           "value": ""+start_var.CODCONTRATO_AD[i]+""
         },
+        {
+          "tabId": "512f414d-2a37-47c9-a999-765869f276bc",
+          "tabLabel": "NOMEFANTASIA",
+          "value": ""+start_var.NOMEFANTASIA_AD[i]+""
+        },
+        {
+          "tabId": "85bf6c7b-9dfd-4cf0-a6e2-61f59d769c63",
+          "tabLabel": "NOMEFANTASIA",
+          "value": ""+start_var.NOMEFANTASIA_AD[i]+""
+        },
+        {
+          "tabId": "2af402f3-0f10-4d57-ab77-85895e965969",
+          "tabLabel": "ANOLETIVO",
+          "value": ""+start_var.ANOLETIVO[i]+""
+        },        
         ### MATRIZ TERMO ADITIVO ###
         {
           "tabId": "901b0d1d-4cea-46e9-a894-0f4b7a81bb0e",

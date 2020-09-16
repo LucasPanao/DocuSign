@@ -107,6 +107,7 @@ RG_AD = []
 RESP_AD = []
 UNIDADE_AD = []
 CURSO_AD = []
+NOMEFANTASIA_AD = []
 
 
 def start_variables_envelope():
@@ -1442,7 +1443,7 @@ AND VW.PARCELA				=	'13'
 )),'--X--X--') VALB13
 
 /*  --------------------------------------- VALOR BRUTO 13--------------------------------*/
-
+,	GC.NOMEFANTASIA
 FROM
 	BD20200619_DSV.dbo.SCONTRATO C ( NOLOCK )						INNER JOIN  BD20200619_DSV.dbo.VW_ZZ_ALUNO_BOLSA_TIPOS					VALOR	( NOLOCK )	ON
 									C.RA					=	VALOR.RA
@@ -1455,7 +1456,9 @@ FROM
 								AND CT.IDHABILITACAOFILIAL	=	C.IDHABILITACAOFILIAL
 								AND CT.IDPERLET				=	C.IDPERLET
 								AND CT.RA					=	C.RA
-								AND	CT.CODCONTRATO			=	C.CODCONTRATO	
+								AND	CT.CODCONTRATO			=	C.CODCONTRATO
+								INNER JOIN 	BD20200619_DSV.dbo.GCOLIGADA																		GC		( NOLOCK )	ON
+									GC.CODCOLIGADA			=	C.CODCOLIGADA	
 												INNER JOIN	INTEGRA_RMK.dbo.DOCU_ENVELOPE													EN		( NOLOCK )	ON
 							VALOR.RA					=	EN.TOTVS_RA
 						AND VALOR.IDPERLET				=	EN.TOTVS_IDPERLET
@@ -1543,6 +1546,7 @@ AND C.CODCONTRATO			=	'34259'
         VALB11.append(arrRow[61].replace('.', ','))
         VALB12.append(arrRow[62].replace('.', ','))
         VALB13.append(arrRow[63].replace('.', ','))
+        NOMEFANTASIA_AD.append(arrRow[64])
 
 
 start_variables_template_aditivo()

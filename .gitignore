@@ -2,7 +2,7 @@
 *.xlsx
 *.pdf
 *.json
-config.yml
+*.yml
 contrato.py
 app 
 docs
