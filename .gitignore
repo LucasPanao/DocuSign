@@ -3,10 +3,11 @@
 *.pdf
 *.json
 *.yml
+*.sql
 contrato.py
 app 
 docs
-refrest_token.py
+refresh_token.py
 index.html
 test_template.py
 aa.html

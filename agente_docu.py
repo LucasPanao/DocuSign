@@ -1,23 +1,29 @@
+from tendo import singleton
+
+## PREVINE O SCRIPT DE SER ABERTO ENQUANTO ESTIVER EM EXECUÇÃO
+me = singleton.SingleInstance()
+
 import db_docu
 import start_var
 import template
 import envelope
-import refrest_token
+import refresh_token
 i = 0
 
 ## INICIA O TOKEN 
-refrest_token.refresh()
-refrest_token.set_token(refrest_token.token)
+#refresh_token.refresh()
+#refresh_token.set_token(refresh_token.token)
 
 ## INICIA OS ARRAYS COM AS INFOS DO BANCO PARA O TEMPLATE
 start_var.start_variables_template()
 
 ## INICIA OS ARRAYS DO ADITIVO 
+
 start_var.start_variables_template_aditivo()
 
 length = len(db_docu.rows)
 
-while i < 1:
+while i < length:
     ## INSERE AS INFOS DO BD NO TEMPLATE
     template.update_template(i)
 
