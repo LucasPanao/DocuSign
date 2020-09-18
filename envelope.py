@@ -15,17 +15,15 @@ def get(url,hdr):
     global data
     response = requests.get(url, headers = hdr)
     data = response.json()
-    with open('envelope.json', 'w') as f:json.dump(data, f)
 
 def post(url,dataEnv,hdr):
   global envelopeId
   global statusContrato
   r = requests.post(url,json= dataEnv, headers = hdr)
-  print(r.json())
   data = r.json()
   envelopeId = data['envelopeId']
   statusContrato = data['status']
-  print(envelopeId)
+  print('O envelope com ID: '+envelopeId+' Foi enviado ao E-mail: '+signer_email)
   return envelopeId, statusContrato
 
 def create_envelope(i,customKwargs,*kwargs):
@@ -68,8 +66,8 @@ def gravar(i):
                   (?,?,?,?,?,?)
                       '''
   args = (envelopeId, start_var.CODCOLIGADA[i],start_var.RA[i],start_var.IDPERLET[i],start_var.IDHABILITACAOFILIAL[i],start_var.CODCONTRATO[i])
-  print(args)
   db_docu.insert_sql(db_docu.query,args)
+  print('Gravado no banco dbo.DOCU_ENVELOPE')
 
 
   db_docu.query = '''
@@ -79,6 +77,16 @@ def gravar(i):
                       '''
   args = (envelopeId, statusContrato)
   db_docu.insert_sql(db_docu.query,args)
+  print('Gravado no banco dbo.DOCU_ENVELOPE_STATUS')
+
+def create_var_envelope(i):
+  global kwargs
+  global customKwargs
+  ## INICIA OS ARRAYS COM AS INFOS DO BANCO PARA O ENVELOPE
+  start_var.start_variables_envelope()
+  kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
+  customKwargs = (start_var.CODCOLIGADA[i],start_var.RA[i],start_var.IDPERLET[i],start_var.IDHABILITACAOFILIAL[i],start_var.CODCONTRATO[i])
+
 
 #### END FUCTIONS 
 
@@ -100,17 +108,8 @@ cc_name = config['cc']['name']
 #### END CONFIG
 
 ### CONVERTING PDF TO BASE64
-with open("contrato-completo-6.pdf", "rb") as pdf_file:
+with open("contrato-completo.pdf", "rb") as pdf_file:
     pdf_64 = base64.b64encode(pdf_file.read())
 pdf_64 = pdf_64.decode("UTF-8")
-
-### CREATING ENVELOPE
-def create_var_envelope(i):
-  global kwargs
-  global customKwargs
-  ## INICIA OS ARRAYS COM AS INFOS DO BANCO PARA O ENVELOPE
-  start_var.start_variables_envelope()
-  kwargs = (pdf_64,signer_email,status,template_id,cc_email,cc_name)
-  customKwargs = (start_var.CODCOLIGADA[i],start_var.RA[i],start_var.IDPERLET[i],start_var.IDHABILITACAOFILIAL[i],start_var.CODCONTRATO[i])
 
 

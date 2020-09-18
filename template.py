@@ -3,34 +3,15 @@ import requests
 import yaml
 import json
 import pyodbc
-from docusign_esign import EnvelopesApi, EnvelopeDefinition, TemplateRole
 import base64
 import time
 from datetime import datetime, timedelta, date
-from docusign_esign.client.api_client import ApiClient
 import start_var
 
-
-#### START FUNCTIONS
-def get(url,hdr):
-    global data
-    response = requests.get(url, headers = hdr)
-    data = response.json()
-    with open('envelope.json', 'w') as f:json.dump(data, f)
-
-def post(url,dataEnv,hdr):
-  global envelopeId
-  r = requests.post(url,json= dataEnv, headers = hdr)
-  print(r.json())
-  data = r.json()
-  envelopeId = data['envelopeId']
-  print(envelopeId)
-  return envelopeId
-
-def put():
+def put(i):
   url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/templates/{1}/recipients/{2}/tabs'.format(signer_client_id,template_id,recipient_id)
   requests.put(url,json= dataTemplate,headers = hdr)
-  print('criado com sucesso')
+  print('Template do aluno(a) {0} criado com sucesso'.format(start_var.NOMEALUNO[i]))
 
 def update_template(i):
   global dataTemplate
@@ -743,12 +724,3 @@ signer_name = config['signer']['name']
 cc_email = config['cc']['email']
 cc_name = config['cc']['name']
 #### END CONFIG
-
-'''
-start_var.start_variables_template()
-update_template()
-url = 'https://demo.docusign.net/restapi/v2.1/accounts/{0}/templates/{1}/recipients/{2}/tabs'.format(signer_client_id,template_id,recipient_id)
-response = requests.put(url,json= dataTemplate,headers = hdr)
-data = response.json()
-with open('custom_tabs.json', 'w') as f:json.dump(data, f)
-'''

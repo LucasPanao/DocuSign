@@ -33,4 +33,3 @@ def insert_sql(query,args):
     cursor = retornar_conexao_sql()
     cursor.execute(query,args)
     conexao.commit()
-    print('gravado no banco')

@@ -1,3 +1,8 @@
+from tendo import singleton
+
+## PREVINE O SCRIPT DE SER ABERTO ENQUANTO ESTIVER EM EXECUÇÃO
+me = singleton.SingleInstance()
+
 import os
 import requests
 import yaml
@@ -9,7 +14,6 @@ def get(url,hdr):
   global data
   response = requests.get(url, headers = hdr)
   data = response.json()
-  with open('envelope.json', 'w') as f:json.dump(data, f)
 
 #### CONFIG
 with open('config.yml') as c:

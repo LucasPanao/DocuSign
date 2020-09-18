@@ -28,7 +28,7 @@ while i < length:
     template.update_template(i)
 
     ## REALIZA O UPDATE NO TEMPLATE
-    template.put()
+    template.put(i)
 
     ## CRIA AS VARIÁVEIS PARA COLOCAR NO ENVELOPE
     envelope.create_var_envelope(i)
