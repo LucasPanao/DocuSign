@@ -45,7 +45,7 @@ def create_envelope(i,customKwargs,*kwargs):
         "name": "CONTRATO OBJETIVO"
       }
     ],
-    "emailSubject": ""+signer_email+"",
+    "emailSubject": "Contrato colégio objetivo",
     "status": ""+status+"",
     "templateId": ""+template_id+"",
     "templateRoles": [
